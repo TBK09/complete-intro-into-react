@@ -2,10 +2,13 @@ import React from 'react';
 
 var MyTitle = React.createClass({
     render: function () {
+        const style = {color : this.props.color};
         return (
-
-
-            React.DOM.div({ style: {color: this.props.color} }, React.DOM.h1(null, this.props.title))
+            <div>
+                <h1 style={style}>
+                    {this.props.title}
+                </h1>
+            </div>
         )
     }
 });

@@ -38,6 +38,22 @@ module.exports = {
                 // exclude : '/node_modules/',
                 test : /\.js$/,
                 loader  :'babel-loader'
+            },
+            {
+                // If you see any css, you all of the loaders specified in the array
+                test : /\.css$/,
+                use : [
+                    // loader 1
+                    "loader",
+                    // loader 2 - needs configuration, hence it's an object
+                    {
+                        loader : "css-loader",
+                        options : {
+                            // to prevent images from being inlined into the bundle.js
+                            url : false
+                        }
+                    }
+                ]
             }
         ]
     }
