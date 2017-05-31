@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { HashRouter, Match } from 'react-router'
+import { BrowserRouter, Match } from 'react-router'
 import '../public/normalize.css'
 import '../public/style.css'
 import Landing from './Landing'
@@ -9,7 +9,7 @@ import Search from './Search'
 const App = React.createClass({
   render () {
     return (
-        <HashRouter>
+        <BrowserRouter>
             <div className='app'>
                 {/* Those  are like the particular routes. The 'exactly pattern' attribute makes it so that the
                 Match component only renders the Landing component when the route is exactly '/'. This is necessary for
@@ -18,7 +18,7 @@ const App = React.createClass({
                 <Match exactly pattern='/' component={Landing} />
                 <Match pattern='/search' component={Search} />
             </div>
-        </HashRouter>
+        </BrowserRouter>
     )
   }
 })
