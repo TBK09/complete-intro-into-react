@@ -1,19 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MyTitle from './MyTitle';
+import React from 'react'
+import { render } from 'react-dom'
+import { HashRouter, Match } from 'react-router'
+import '../public/normalize.css'
+import '../public/style.css'
+import Landing from './Landing'
+import Search from './Search'
 
-var MyFirstComponent = React.createClass({
-    render: function () {
-        return (
-            <div>
-                <MyTitle title="This is some title" color="red"/>
-                <MyTitle title="This is another title" color="green"/>
-                <MyTitle title="This is yet another title" color="blue"/>
-                <MyTitle title="This is one sexy title" color="brown"/>
-                <MyTitle title="This is a purple title" color="purple"/>
+const App = React.createClass({
+  render () {
+    return (
+        <HashRouter>
+            <div className='app'>
+                {/* Those  are like the particular routes. The 'exactly pattern' attribute makes it so that the
+                Match component only renders the Landing component when the route is exactly '/'. This is necessary for
+                 landing pages, as we don't want e.g. '/something/else' to also match the homepage pattern.
+                 Using just the 'pattern' attribtue is more fuzzy.*/}
+                <Match exactly pattern='/' component={Landing} />
+                <Match pattern='/search' component={Search} />
             </div>
-        )
-    }
-});
+        </HashRouter>
+    )
+  }
+})
 
-ReactDOM.render(React.createElement(MyFirstComponent), document.getElementById('app'));
+render(<App />, document.getElementById('app'))
+
