@@ -1,16 +1,33 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import { setSearchTerm } from './actionCreators'
+
+const { string, func } = React.PropTypes;
 
 const Landing = React.createClass({
-  render () {
-    return (
-            <div className='landing'>
-                <h1>svideo</h1>
-                <input type='text' placeholder='Search' />
-                <Link to='/search'>or Browse All</Link>
-            </div>
-        )
+    propType: {
+        searchTerm: string,
+        dispatch: func
+    },
+    handleSearchTermChange (event) {
+        this.props.dispatch(setSearchTerm(event.target.value))
+    },
+    render () {
+        return (
+                <div className='landing'>
+                    <h1>svideo</h1>
+                    <input onChange={this.handleSearchTermChange} value={this.props.searchTerm} type='text' placeholder='Search' />
+                    <Link to='/search'>or Browse All</Link>
+                </div>
+            )
   }
-})
+});
 
-export default Landing
+const mapStateToProps = (state) => {
+    return {
+        searchTerm: state.searchTerm
+    };
+};
+
+export default connect(mapStateToProps)(Landing)
